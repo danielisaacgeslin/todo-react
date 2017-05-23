@@ -2,7 +2,14 @@ const fetchTodos = () => {
     return {
         type: 'FETCH_TODOS',
         payload: null
-    }
-}
+    };
+};
 
-export default { fetchTodos };
+const addTodo = text => {
+    return {
+        type: 'ADD_TODO',
+        payload: { text }
+    };
+};
+
+export default { fetchTodos, addTodo };

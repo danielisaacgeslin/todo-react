@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import TodoListPack from './todo-list';
-// require("../css/style.scss");
+require("../css/style.scss");
 
-//store.subscribe(()=>console.log(store.getState()));
+store.subscribe(()=>console.log(store.getState()));
 
 class App extends React.Component {
     render() {

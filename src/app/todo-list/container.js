@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { default as todoListActions } from './actions';
+import { TodoInput } from './todo-input';
+
+require("./style.scss");
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -10,12 +13,16 @@ class TodoList extends React.Component {
     }
 
     render() {
-        console.log('todos', this.props.todos);
         return (
-            <div className="todo-list">
-                <ul>
-                    {this.props.todos.map((todo, i) => (<li key={i}>{todo.text}</li>))}
-                </ul>
+            <div className="todo-list container">
+                <div className="row">
+                    <div class="col-xs-12">
+                        <TodoInput addTodo={this.props.addTodo.bind(this)}></TodoInput>
+                        <ol className="todo-list__list">
+                            {this.props.todos.map((todo, i) => (<li key={i}>{todo.text}</li>))}
+                        </ol>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -27,7 +34,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchTodos: () => dispatch(todoListActions.fetchTodos())
+        fetchTodos: () => dispatch(todoListActions.fetchTodos()),
+        addTodo: text => dispatch(todoListActions.addTodo(text))
     };
 }
 
