@@ -7,8 +7,6 @@ import store from './store';
 import TodoListPack from './todo-list';
 require("../css/style.scss");
 
-store.subscribe(()=>console.log(store.getState()));
-
 class App extends React.Component {
     render() {
         return (

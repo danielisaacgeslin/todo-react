@@ -8,16 +8,22 @@ export default class TodoInput extends React.Component {
     }
 
     onAddTodo() {
-        const input = this.refs.input
-        if (!input.value) return;
-        this.props.addTodo(input.value);
-        input.value = null;
+        this.props.addTodo(this.refs.input.value);
+    }
+
+    updateNewTodo(event) {
+        this.props.updateNewTodo(event.target.value);
     }
 
     render() {
         return (
             <div className="todo-input">
-                <input ref="input" className="todo-input__input" type="text" />
+                <input
+                    className="todo-input__input"
+                    type="text"
+                    ref="input"
+                    value={this.props.newTodo}
+                    onChange={this.updateNewTodo.bind(this)} />
                 <button
                     onClick={this.onAddTodo.bind(this)}
                     className="todo-input__button btn btn-success">

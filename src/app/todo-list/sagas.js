@@ -12,4 +12,15 @@ function* fetchTodos() {
     yield* takeLatest('FETCH_TODOS', fetchTodosAsync);
 }
 
-export default { fetchTodos };
+function* addTodoAsync(action){
+    // const response = yield call(()=>axios.get('/movies.json'));
+    const response = action.payload;
+    yield put({ type: 'ADD_TODO_SUCCESS', payload: response });
+    yield put({ type: 'NEW_TODO_UPDATE', payload: '' });
+}
+
+function* addTodo(){
+    yield* takeLatest('ADD_TODO', addTodoAsync);
+}
+
+export default { fetchTodos, addTodo };

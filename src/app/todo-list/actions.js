@@ -6,10 +6,19 @@ const fetchTodos = () => {
 };
 
 const addTodo = text => {
+    /** @todo ADD_TODO_FAIL */
+    const type = text ? 'ADD_TODO' : 'ADD_TODO_FAIL';
     return {
-        type: 'ADD_TODO',
+        type: type,
         payload: { text }
     };
 };
 
-export default { fetchTodos, addTodo };
+const updateNewTodo = text => {
+    return {
+        type: 'NEW_TODO_UPDATE',
+        payload: text
+    };
+};
+
+export default { fetchTodos, addTodo, updateNewTodo };

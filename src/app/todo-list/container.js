@@ -17,7 +17,11 @@ class TodoList extends React.Component {
             <div className="todo-list container">
                 <div className="row">
                     <div class="col-xs-12">
-                        <TodoInput addTodo={this.props.addTodo.bind(this)}></TodoInput>
+                        <TodoInput
+                            newTodo={this.props.newTodo}
+                            updateNewTodo={this.props.updateNewTodo.bind(this)}
+                            addTodo={this.props.addTodo.bind(this)}>
+                        </TodoInput>
                         <ol className="todo-list__list">
                             {this.props.todos.map((todo, i) => (<li key={i}>{todo.text}</li>))}
                         </ol>
@@ -29,13 +33,14 @@ class TodoList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { todos: state.todos };
+    return { todos: state.todos, newTodo: state.newTodo };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchTodos: () => dispatch(todoListActions.fetchTodos()),
-        addTodo: text => dispatch(todoListActions.addTodo(text))
+        addTodo: text => dispatch(todoListActions.addTodo(text)),
+        updateNewTodo: text => dispatch(todoListActions.updateNewTodo(text))
     };
 }
 
